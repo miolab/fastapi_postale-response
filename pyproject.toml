@@ -8,6 +8,8 @@ packages = [{include = "fastapi_postale_response"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+fastapi = "^0.95.0"
+pydantic = "^1.10.7"
 
 
 [build-system]
