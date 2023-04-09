@@ -1,2 +1,3 @@
-# fastapi_postale-response
-WIP
+# FastAPI Postale Response
+
+HTTP Request Endpoint mock. (for test use)
