@@ -4,9 +4,25 @@ from pydantic import BaseModel
 app = FastAPI()
 
 
+class RequestBodyDummy(BaseModel):
+    status: str
+
+
 class UserDummy(BaseModel):
     name: str
     lang: str
+
+
+@app.post('/')
+def post_status_dummy(req: RequestBodyDummy):
+    """POST handler: for req and res test in root"""
+    match status := req.status:
+        case "ping":
+            return {"status": "pong"}
+        case "ok":
+            return {"status": status}
+        case _:
+            return {"status": "error"}
 
 
 @app.post('/user_dummy/')
