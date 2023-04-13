@@ -6,7 +6,8 @@ ENV PYTHONUNBUFFERED True
 RUN pip install \
   fastapi==0.95.0 \
   uvicorn \
-  pydantic
+  pydantic \
+  pytest
 
 EXPOSE 80
 
