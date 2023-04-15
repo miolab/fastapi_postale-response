@@ -24,9 +24,9 @@ jobs:
         run: |
           docker run app-image:latest python -V
           docker run app-image:latest uvicorn --version
-      - name: Pytest
+      - name: Test with pytest
         run: |
           docker run app-image:latest pytest --pyargs app
-      - name: Test with pytest
+      - name: Finish CI
         run: |
           echo "finished"
