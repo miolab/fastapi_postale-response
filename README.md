@@ -40,3 +40,9 @@ curl "http://0.0.0.0:80" -X POST \
   "status": "pong"
 }
 ```
+
+### Execute test
+
+```sh
+docker run -it fastapi-postail-response pytest --pyargs app
+```
