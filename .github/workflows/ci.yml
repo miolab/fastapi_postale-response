@@ -1,29 +1,32 @@
-name: Python build container
+name: Python container CI
 
 on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
 
     steps:
       - name: Init setup
         run: echo "Init setup..."
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Build Docker image
+        uses: docker/build-push-action@v4
         with:
-          python-version: ${{ matrix.python-version }}
-      - name: Build Container
+          context: .
+          push: false
+          load: true
+          tags: app-image:latest
+      - name: Built Container Confirmation
         run: |
-          docker build -t fastapi-postail-response .
+          docker run app-image:latest python -V
+          docker run app-image:latest uvicorn --version
       - name: Pytest
         run: |
-          docker run -it fastapi-postail-response pytest --pyargs app
+          docker run app-image:latest pytest --pyargs app
       - name: Test with pytest
         run: |
           echo "finished"
