@@ -1,0 +1,32 @@
+name: Python container CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Init setup
+        run: echo "Init setup..."
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Build Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: false
+          load: true
+          tags: app-image:latest
+      - name: Built Container Confirmation
+        run: |
+          docker run app-image:latest python -V
+          docker run app-image:latest uvicorn --version
+      - name: Test with pytest
+        run: |
+          docker run app-image:latest pytest --pyargs app
+      - name: Finish CI
+        run: |
+          echo "finished"
