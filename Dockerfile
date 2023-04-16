@@ -1,16 +1,14 @@
-FROM python:3.11-slim
+FROM --platform=linux/x86_64 python:3.11-slim
 
 # Allow statements and log messages to immediately appear in the Knative logs
 ENV PYTHONUNBUFFERED True
 
 COPY ./app /app
+COPY pyproject.toml poetry.lock ./
 
-RUN pip install \
-  fastapi==0.95.0 \
-  uvicorn \
-  pydantic \
-  pytest \
-  httpx
+RUN pip install poetry==1.4.2
+RUN poetry config virtualenvs.create false \
+  && poetry install
 
 EXPOSE 80
 

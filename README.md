@@ -4,10 +4,10 @@ HTTP Request Endpoint mock. (for personal use)
 
 - Versions
   ```sh
-  docker run -it fastapi-postail-response python -V
+  docker run --rm -it fastapi-postail-response python -V
   Python 3.11.3
 
-  docker run -it fastapi-postail-response uvicorn --version
+  docker run --rm -it fastapi-postail-response uvicorn --version
   Running uvicorn 0.21.1 with CPython 3.11.3 on Linux
   ```
 
@@ -18,7 +18,7 @@ docker build -t fastapi-postail-response .
 ```
 
 ```sh
-docker run -p 80:80 -it fastapi-postail-response
+docker run --rm -p 80:80 -it fastapi-postail-response
 
 INFO:     Started server process [1]
 INFO:     Waiting for application startup.
