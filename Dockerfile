@@ -10,6 +10,7 @@ RUN pip install poetry==1.4.2
 RUN poetry config virtualenvs.create false \
   && poetry install
 
-EXPOSE 80
+ENV PORT 8080
+EXPOSE $PORT
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
