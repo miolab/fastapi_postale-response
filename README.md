@@ -4,30 +4,32 @@ HTTP Request Endpoint mock. (for personal use)
 
 - Versions
   ```sh
-  docker run --rm -it fastapi-postail-response python -V
-  Python 3.11.3
-
-  docker run --rm -it fastapi-postail-response uvicorn --version
-  Running uvicorn 0.21.1 with CPython 3.11.3 on Linux
+  docker run --rm -it fastapi-postale-response python -V
   ```
+  > `Python 3.11.3`
+
+  ```sh
+  docker run --rm -it fastapi-postale-response uvicorn --version
+  ```
+  > `Running uvicorn 0.21.1 with CPython 3.11.3 on Linux`
 
 ## Example use
 
 ```sh
-docker build -t fastapi-postail-response .
+docker build -t fastapi-postale-response .
 ```
 
 ```sh
-docker run --rm -p 80:80 -it fastapi-postail-response
+docker run --rm -p 8080:8080 -it fastapi-postale-response
 
 INFO:     Started server process [1]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
+INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
 ```
 
 ```sh
-curl "http://0.0.0.0:80" -X POST \
+curl "http://0.0.0.0:8080" -X POST \
   -H 'Content-Type: application/json' \
   -d '{
     "status": "ping"
@@ -44,5 +46,5 @@ curl "http://0.0.0.0:80" -X POST \
 ### Execute test
 
 ```sh
-docker run -it fastapi-postail-response pytest --pyargs app
+docker run --rm -it fastapi-postale-response pytest --pyargs app
 ```

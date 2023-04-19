@@ -42,3 +42,11 @@ def get_hello_world(user_id: int, q: str = ""):
         "query": q,
         "message": "Hello, world!"
     }
+
+
+@app.get('/')
+def get_root():
+    """Get handler: root endpoint"""
+    return {
+        "message": "Hello, this is GET root."
+    }

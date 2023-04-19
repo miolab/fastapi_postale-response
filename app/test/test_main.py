@@ -30,3 +30,11 @@ def test_post_status_dummy_return():
     )
     assert response.status_code == 200
     assert response.json() == {"status": "error"}
+
+
+def test_get_root():
+    response = client.get(
+        "/"
+    )
+    assert response.status_code == 200
+    assert response.json() == {"message": "Hello, this is GET root."}
